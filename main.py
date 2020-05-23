@@ -5,6 +5,8 @@ from sklearn.svm import SVC
 from sklearn.linear_model.logistic import LogisticRegression
 from sklearn.model_selection import train_test_split
 import NeuralNetworks
+import NativeBayes
+from one_hot import one_hot
 
 raw_data = pd.read_csv('total.csv')
 # print(raw_data)
@@ -59,3 +61,12 @@ print(y_train_softmax.shape)
 final_theta = NeuralNetworks.neural_network(x_train, y_train_softmax)
 print('neural network accuracy: ',
       NeuralNetworks.accuracy(final_theta, x_test, y_test))
+
+# Native Bayes
+word_vec = one_hot(sentiment)
+x_train, x_test, y_train, y_test = train_test_split(
+    word_vec, y, test_size=0.25, stratify=y)
+p_class_vect, p_class = NativeBayes.train_bayes(x_train, y_train)
+y_pred = NativeBayes.predict_bayes(p_class_vect, p_class, x_test, y_test)
+y_pred = y_pred - 1  # -1 0 1
+print('Native Bayes accuracy: ', NativeBayes.accuracy(y_pred, y_test))

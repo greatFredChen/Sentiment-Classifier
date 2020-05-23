@@ -14,6 +14,8 @@
   - 以后会增加更多模型
 - NeuralNetworks.py: 自己写的神经网络模型学习模型
 - NativeBayes.py: 自己写的朴素贝叶斯学习模型
+- one_hot.py: one-hot编码函数，使用one-hot将词语转化为词向量
+- total.csv: 数据集
 
 #### 词向量转化使用了word2vec,请注意安装依赖！
 
